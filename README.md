@@ -2,7 +2,7 @@
 
 **Author:** Bui Quang Minh  
 **Date:** *\today*  
-view this on-going abstract in overleaf: https://www.overleaf.com/read/cvfqfsrqszzw#769cad
+
 ## Table of Contents
 1. [Introduction](#introduction)  
    1. [Ideology and Context](#ideology-and-context)  
@@ -58,33 +58,35 @@ Currently, dormitory management faces several critical challenges:
 | Database                  | PostgreSQL/Firebase                                           |
 | Hosting                   | Netlify (Frontend), AWS/Digital Ocean (Backend)               |
 | Authentication            | Cardano wallets (Nami, Eternl, Lace)                         |
+| **Cardano Library**       | Lucid (for on-chain interactions and scripts)                |
+| **API Services**          | Blockfrost (for Cardano network queries)                     |
 
 ---
 
 ## Technical Requirements
 
 ### Contract Automation for Fee Extension
-|                                                                 |
-|-----------------------------------------------------------------|
-| Automatic verification of payments at precise scheduled intervals. |
-| Immediate on-chain updates upon payment confirmation.              |
-| Automatic issuance of penalties and warnings upon missed deadlines. |
-| Contracts must have at least 99.99% uptime.                        |
+|                                                                        |
+|------------------------------------------------------------------------|
+| Automatic verification of payments at precise scheduled intervals.     |
+| Immediate on-chain updates upon payment confirmation.                  |
+| Automatic issuance of penalties and warnings upon missed deadlines.    |
+| Contracts must have at least 99.99% uptime.                            |
 
 ### Automated Slashing Mechanism
-|                                                                 |
-|-----------------------------------------------------------------|
-| Immediate, transparent penalty application for rule violations.   |
-| Governance-controlled adjustable rulesets stored immutably on-chain. |
-| Penalties escalate automatically for repeated violations.          |
-| All penalty actions require audit trails recorded on-chain.        |
+|                                                                        |
+|------------------------------------------------------------------------|
+| Immediate, transparent penalty application for rule violations.        |
+| Governance-controlled adjustable rulesets stored immutably on-chain.   |
+| Penalties escalate automatically for repeated violations.              |
+| All penalty actions require audit trails recorded on-chain.            |
 
 ### Contract Termination and Burning
-|                                                                 |
-|-----------------------------------------------------------------|
-| Automatic contract expiration and burning at a predefined timestamp. |
-| Mandatory settlement of balances and violations prior to termination. |
-| Immutable recording of termination transactions.                     |
+|                                                                        |
+|------------------------------------------------------------------------|
+| Automatic contract expiration and burning at a predefined timestamp.   |
+| Mandatory settlement of balances and violations prior to termination.  |
+| Immutable recording of termination transactions.                        |
 
 ### Web-Based Platform
 The web-based platform should offer an intuitive, responsive, and user-friendly interface for both residents and Dormitory Management Board (DMB) members. Key UI requirements include:
@@ -103,7 +105,10 @@ The smart contract architecture will comprise:
 - **Fee Management**: Logic to handle automated fee verification and renewal.  
 - **Penalty Enforcement**: On-chain penalty logic triggered by predefined rule violations.  
 - **Contract Lifecycle Management**: Mechanisms for automated burning of contracts upon expiration.  
-- **Governance Control**: Ability for the DMB to set and adjust penalty and rule parameters securely.
+- **Governance Control**: Ability for the DMB to set and adjust penalty and rule parameters securely.  
+
+> **Smart Contract Model:**
+> The Aiken smart contract will enforce state transitions based on fee payments, rule violations, and time-based contract expiration. It ensures concurrency handling by requiring correct signatures and inputs on every transaction. All contractual data—such as fee obligations, penalty records, and lifecycle events—are stored or referenced immutably on-chain.
 
 ---
 
@@ -112,6 +117,24 @@ Below is a Gantt chart illustrating the timeline for each major phase of the dor
 
 **Figure**:  
 ![Development Milestones and Phases](milestone2.png)
+
+**Weekly Breakdown**:
+- **Weeks 1-4 (Research & Design)**
+  - Finalize project requirements and success metrics.
+  - Outline smart contract logic and identify governance structures.
+  - Define penalty and fee extension mechanisms.
+- **Weeks 5-8 (Smart Contract Development)**
+  - Implement fee extension logic in Aiken.
+  - Develop penalty enforcement (slashing) mechanism.
+  - Write initial test cases for security and performance.
+- **Weeks 9-12 (Web Platform Development)**
+  - Establish Node.js backend and database integration.
+  - Build React.js frontend with wallet authentication.
+  - Integrate on-chain data retrieval via Cardano APIs.
+- **Weeks 13-16 (Testing & Deployment)**
+  - Conduct full-scale testing on Cardano testnet.
+  - Perform security audits and code reviews.
+  - Deploy final version to mainnet upon successful testing.
 
 ---
 
@@ -140,3 +163,4 @@ The project requires addressing advanced blockchain concepts:
 
 ## Conclusion
 Integrating blockchain technology, specifically Cardano and Aiken, transforms dormitory management by significantly enhancing operational transparency, security, and fairness. Automation of critical processes ensures accuracy, reduces disputes, and creates a reliable, efficient management system.
+
