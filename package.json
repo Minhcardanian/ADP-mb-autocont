@@ -5,6 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests yet\"",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts --exec ts-node",
+    "test": "NODE_OPTIONS=--loader=ts-node/esm mocha 'test/**/*.spec.ts'",
     "aiken:build": "aiken build"
   },
   "keywords": [],
@@ -13,5 +19,24 @@
   "type": "module",
   "dependencies": {
     "lucid-cardano": "^0.10.4"
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5",
+    "@blockfrost/blockfrost-js": "^6.0.0",
+    "lucid-cardano": "^0.10.4",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2",
+    "ts-node": "^10.9.2",
+    "nodemon": "^3.0.2",
+    "mocha": "^10.4.0",
+    "chai": "^4.3.10",
+    "sinon": "^20.0.0",
+    "@types/sinon": "^10.0.16",
+    "eslint": "^8.54.0",
+    "prettier": "^3.2.5",
+    "@types/mocha": "^10.0.1",
+    "@types/chai": "^4.3.11"
   }
 }

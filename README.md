@@ -1,5 +1,7 @@
 # Software Requirements Specification (SRS) for Dormitory Contract Automation using Cardano Aiken
 
+![CI](https://github.com/your-org/adp-mb-autocont/actions/workflows/ci.yml/badge.svg)
+
 **Author:** Bui Quang Minh  
 **Date:** *\today*  
 
@@ -156,6 +158,53 @@ the Lucid library.
 4. Establish CI/CD pipeline for building, testing, and mainnet deployment.
 5. Prepare production infrastructure and document operational procedures.
 6. Compile and validate basic Aiken contract functions.
+7. Document installation of the `aiken` CLI and ensure build scripts check for its presence.
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/your-org/adp-mb-autocont.git
+cd adp-mb-autocont
+npm install
+cp .env.example .env
+```
+Install the [Aiken](https://aiken-lang.org/) CLI separately and ensure the `aiken` binary is available in your `PATH` for contract compilation.
+
+## Development
+
+- `npm run dev` – start the Express server with hot reload
+- `npm run aiken:build` – compile Aiken contracts
+
+## Testing
+
+Run all unit tests with:
+
+```bash
+npm test
+```
+
+## Build & Deploy
+
+```bash
+npm run build
+npm start
+```
+
+Docker deployment:
+
+```bash
+docker compose up --build
+```
+
+## API Reference
+
+| Method | Endpoint            | Body                                     | Description                        |
+|-------|--------------------|------------------------------------------|------------------------------------|
+| POST  | `/api/deploy`      | -                                        | Compile and deploy Aiken contract. |
+| POST  | `/api/extend-fee`  | `{ contractAddress, tenantPubKeyHash, amount }` | Extend contract fee period.       |
+| POST  | `/api/slash`       | `{ contractAddress, violatorPubKeyHash, reasonCode }` | Apply a slashing penalty. |
 
 ---
 
