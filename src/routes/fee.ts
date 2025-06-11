@@ -10,14 +10,21 @@ interface ExtendFeeBody {
 }
 
 router.post('/api/extend-fee', async (req, res) => {
-  const { contractAddress, tenantPubKeyHash, amount } = req.body as ExtendFeeBody;
+  const { contractAddress, tenantPubKeyHash, amount } = req.body as Partial<ExtendFeeBody>;
+  if (!contractAddress || !tenantPubKeyHash || !amount) {
+    return res.status(400).json({ error: 'Invalid request body' });
+  }
+  const value = BigInt(amount);
+  if (value <= 0n) {
+    return res.status(400).json({ error: 'Amount must be positive' });
+  }
   try {
     const lucid = await getLucid();
-    const tx = await lucid
+    const completeTx = await lucid
       .newTx()
-      .payToAddress(contractAddress, { lovelace: BigInt(amount) })
-      .attachSpendingValidator({ type: 'PlutusScriptV2', script: '' });
-    const signed = await tx.complete().then(t => t.sign().complete());
+      .payToAddress(contractAddress, { lovelace: value })
+      .complete();
+    const signed = await completeTx.sign().complete();
     const txHash = await signed.submit();
     res.json({ txHash });
   } catch (err) {

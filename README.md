@@ -158,6 +158,7 @@ the Lucid library.
 4. Establish CI/CD pipeline for building, testing, and mainnet deployment.
 5. Prepare production infrastructure and document operational procedures.
 6. Compile and validate basic Aiken contract functions.
+7. Document installation of the `aiken` CLI and ensure build scripts check for its presence.
 
 ---
 
@@ -169,6 +170,7 @@ cd adp-mb-autocont
 npm install
 cp .env.example .env
 ```
+Install the [Aiken](https://aiken-lang.org/) CLI separately and ensure the `aiken` binary is available in your `PATH` for contract compilation.
 
 ## Development
 

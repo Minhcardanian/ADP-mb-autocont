@@ -2,9 +2,12 @@ import { spawn } from 'child_process';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
-export async function buildContracts(): Promise<void> {
+export async function buildContracts(spawnFn = spawn): Promise<void> {
   await new Promise<void>((resolve, reject) => {
-    const proc = spawn('aiken', ['build'], { stdio: 'inherit' });
+    const proc = spawnFn('aiken', ['build'], { stdio: 'inherit' });
+    proc.on('error', err => {
+      reject(err);
+    });
     proc.on('close', code => {
       if (code === 0) resolve();
       else reject(new Error(`aiken build exited with code ${code}`));

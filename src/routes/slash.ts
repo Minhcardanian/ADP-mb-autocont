@@ -10,14 +10,17 @@ interface SlashBody {
 }
 
 router.post('/api/slash', async (req, res) => {
-  const { contractAddress, violatorPubKeyHash, reasonCode } = req.body as SlashBody;
+  const { contractAddress, violatorPubKeyHash, reasonCode } = req.body as Partial<SlashBody>;
+  if (!contractAddress || !violatorPubKeyHash || !reasonCode) {
+    return res.status(400).json({ error: 'Invalid request body' });
+  }
   try {
     const lucid = await getLucid();
-    const tx = await lucid
+    const completeTx = await lucid
       .newTx()
       .payToAddress(contractAddress, { lovelace: 0n })
-      .attachSpendingValidator({ type: 'PlutusScriptV2', script: '' });
-    const signed = await tx.complete().then(t => t.sign().complete());
+      .complete();
+    const signed = await completeTx.sign().complete();
     const txHash = await signed.submit();
     res.json({ txHash, reasonCode });
   } catch (err) {
