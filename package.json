@@ -1,0 +1,17 @@
+{
+  "name": "adp-mb-autocont",
+  "version": "1.0.0",
+  "description": "**Author:** Bui Quang Minh   **Date:** *\\today*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests yet\"",
+    "aiken:build": "aiken build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "lucid-cardano": "^0.10.4"
+  }
+}

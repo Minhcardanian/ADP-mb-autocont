@@ -136,6 +136,27 @@ Below is a Gantt chart illustrating the timeline for each major phase of the dor
   - Perform security audits and code reviews.
   - Deploy final version to mainnet upon successful testing.
 
+## Aiken Development Basics
+
+The repository includes a `contracts/` directory containing Aiken source files.
+Install the [Aiken CLI](https://aiken-lang.org) and compile contracts using:
+
+```bash
+aiken build
+```
+
+This generates validator scripts that can be deployed or interacted with using
+the Lucid library.
+
+## Tasks for Full Production
+
+1. Finalize Lucid-based integration with Cardano testnet using network magic 2.
+2. Implement deployment scripts for Aiken contracts with automated network configuration.
+3. Develop comprehensive test suite covering contract logic and web platform.
+4. Establish CI/CD pipeline for building, testing, and mainnet deployment.
+5. Prepare production infrastructure and document operational procedures.
+6. Compile and validate basic Aiken contract functions.
+
 ---
 
 ## Complexity and Scope
