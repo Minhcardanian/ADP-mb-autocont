@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getLucid } from '../src/lib/lucid';
+import { getLucid } from '../src/lib/lucid.js';
 
 describe('Lucid connection', () => {
   it('returns a Lucid instance with correct network magic', async () => {

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { buildContracts } from '../src/lib/aiken';
+import { buildContracts } from '../src/lib/aiken.js';
 
 describe('Contracts', () => {
   it('builds without errors', async () => {
