@@ -1,5 +1,7 @@
 # Software Requirements Specification (SRS) for Dormitory Contract Automation using Cardano Aiken
 
+![CI](https://github.com/your-org/adp-mb-autocont/actions/workflows/ci.yml/badge.svg)
+
 **Author:** Bui Quang Minh  
 **Date:** *\today*  
 
@@ -135,6 +137,72 @@ Below is a Gantt chart illustrating the timeline for each major phase of the dor
   - Conduct full-scale testing on Cardano testnet.
   - Perform security audits and code reviews.
   - Deploy final version to mainnet upon successful testing.
+
+## Aiken Development Basics
+
+The repository includes a `contracts/` directory containing Aiken source files.
+Install the [Aiken CLI](https://aiken-lang.org) and compile contracts using:
+
+```bash
+aiken build
+```
+
+This generates validator scripts that can be deployed or interacted with using
+the Lucid library.
+
+## Tasks for Full Production
+
+1. Finalize Lucid-based integration with Cardano testnet using network magic 2.
+2. Implement deployment scripts for Aiken contracts with automated network configuration.
+3. Develop comprehensive test suite covering contract logic and web platform.
+4. Establish CI/CD pipeline for building, testing, and mainnet deployment.
+5. Prepare production infrastructure and document operational procedures.
+6. Compile and validate basic Aiken contract functions.
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/your-org/adp-mb-autocont.git
+cd adp-mb-autocont
+npm install
+cp .env.example .env
+```
+
+## Development
+
+- `npm run dev` – start the Express server with hot reload
+- `npm run aiken:build` – compile Aiken contracts
+
+## Testing
+
+Run all unit tests with:
+
+```bash
+npm test
+```
+
+## Build & Deploy
+
+```bash
+npm run build
+npm start
+```
+
+Docker deployment:
+
+```bash
+docker compose up --build
+```
+
+## API Reference
+
+| Method | Endpoint            | Body                                     | Description                        |
+|-------|--------------------|------------------------------------------|------------------------------------|
+| POST  | `/api/deploy`      | -                                        | Compile and deploy Aiken contract. |
+| POST  | `/api/extend-fee`  | `{ contractAddress, tenantPubKeyHash, amount }` | Extend contract fee period.       |
+| POST  | `/api/slash`       | `{ contractAddress, violatorPubKeyHash, reasonCode }` | Apply a slashing penalty. |
 
 ---
 
